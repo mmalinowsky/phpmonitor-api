@@ -3,7 +3,7 @@ namespace Api\Route\Strategy;
 
 use League\Container\Container;
 
-class StrategyFoundTest extends \PHPUnit_Framework_TestCase
+class RouteFoundTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Exception
@@ -37,17 +37,6 @@ class StrategyFoundTest extends \PHPUnit_Framework_TestCase
         $controller = 'ServerInfo';
         $method = 'getInfo';
         $parameters = array();
-        $strategy = new RouteFound($controller, $method, $parameters);
-        $strategy->render();
-    }
-
-    public function testPassingValidController()
-    {
-        $controller = 'ServerInfo';
-        $method = 'getInfo';
-        $container = new Container;
-        $container->add('ControllerFactory', new \Api\Controller\Factory);
-        $parameters = ['container' => $container];
         $strategy = new RouteFound($controller, $method, $parameters);
         $strategy->render();
     }

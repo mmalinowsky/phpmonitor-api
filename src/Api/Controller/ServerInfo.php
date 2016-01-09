@@ -2,7 +2,7 @@
 namespace Api\Controller;
 
 use Api\Config as Config;
-use Api\Module\Facade as ModuleFacade;
+use Api\Module\Facade as Facade;
 use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
 
@@ -49,7 +49,7 @@ class ServerInfo
         return $formatProcessor->renderData($formatClass, $data);
     }
 
-    private function addModules(ModuleFacade $moduleFacade, $config)
+    private function addModules(Facade $moduleFacade, $config)
     {
         $moduleFacade->addModule(
             'System',
