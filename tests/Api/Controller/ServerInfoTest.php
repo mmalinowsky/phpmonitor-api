@@ -26,17 +26,27 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
         $controller->getInfo($container, 'json');
     }
 
-    /**
-     * @expectedException \Exception
-     */
+   
     public function testIfWeCanPassWhiteListWhenOurIpIsNotOnList()
     {
         $ip = 'localhost';
         $controller = new ServerInfo();
         $controllerRef = $this->setPropertyAccessible($controller, 'config');
-        $controllerRef->getValue($controller)->whiteListEnabled = true;
-        $controllerRef->getValue($controller)->configWhiteList = '99.99.99.99';
-        $this->invokeMethod($controller, 'checkWhiteList', $ip);
+        $controllerRef->getValue($controller)->whitelistEnabled = true;
+        $controllerRef->getValue($controller)->whitelist = ['99.99.99.99'];
+        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip));
+        $this->assertFalse($ret);
+    }
+
+    public function testIfWeCanPassWhiteListWhenOurIpIsOnList()
+    {
+        $ip = 'localhost';
+        $controller = new ServerInfo();
+        $controllerRef = $this->setPropertyAccessible($controller, 'config');
+        $controllerRef->getValue($controller)->whitelistEnabled = true;
+        $controllerRef->getValue($controller)->whitelist = [$ip];
+        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip));
+        $this->assertTrue($ret);
     }
 
     public function testAddingModulesAndGettingData()
