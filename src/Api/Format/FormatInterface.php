@@ -7,9 +7,13 @@ namespace Api\Format;
 interface FormatInterface
 {
     /**
+     * Get http header
+     */
+    public function getHeader();
+    /**
+     * Render Data
      * @param mixed $data
      * @return mixed
      */
-    public function getHeader();
     public function render($data);
 }

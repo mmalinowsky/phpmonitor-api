@@ -19,7 +19,6 @@ class Router
         $routeInfo = $this->prepareRouteInfo($routeInfo);
         $method = $routeInfo[1]['method'];
         $controller = $routeInfo[1]['controller'];
-        $format = $routeInfo[2]['format'];
         $container = $routeInfo[1]['container'];
         $placeHolder = $routeInfo[2];
         $parameters = array_merge(['container' => $container], $placeHolder);
@@ -30,11 +29,11 @@ class Router
     
     private function prepareRouteInfo($routeInfo)
     {
-        isset($routeInfo[1]['method']) or $routeInfo[1]['method']  = null;
-        isset($routeInfo[1]['controller']) or $routeInfo[1]['controller'] = null;
-        isset($routeInfo[1]['container']) or $routeInfo[1]['container'] = null;
-        isset($routeInfo[2]) or $routeInfo[2] = array();
-        isset($routeInfo[2]['format']) or $routeInfo[2]['format'] = 'json';
+        isset($routeInfo[1]['method']) || $routeInfo[1]['method']  = null;
+        isset($routeInfo[1]['controller']) || $routeInfo[1]['controller'] = null;
+        isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
+        isset($routeInfo[2]) || $routeInfo[2] = array();
+        isset($routeInfo[2]['format']) || $routeInfo[2]['format'] = 'json';
         return $routeInfo;
     }
 }

@@ -2,15 +2,15 @@
 namespace Api;
 
 /**
- *
- * @property mixed string $memcachedIp
- * @property mixed int $memcachedPort
- * @property mixed string $mysqlHost
- * @property mixed string $mysqlUser
- * @property mixed string $mysqlPassword
- * @property mixed bool $whitelistEnabled
- * @property mixed array $whitelist
- * @property mixed string $defaultHostToPing
+ * @property mixed $memcachedIp
+ * @property mixed $memcachedPort
+ * @property mixed $mysqlHost
+ * @property mixed $mysqlUser
+ * @property mixed $mysqlPassword
+ * @property mixed $whitelistEnabled
+ * @property mixed $whitelist
+ * @property mixed $defaultHostToPing
+ * @property mixed $hostToPing
  */
 class Config
 {

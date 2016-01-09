@@ -18,7 +18,7 @@ class Facade
 
     /**
      * Add Module
-     * @param string $module
+     * @param string $moduleName
      * @param array  $args
      */
     public function addModule($moduleName, $args = array())
@@ -28,6 +28,7 @@ class Facade
             $this->moduleComposite->addComponent($module);
         } catch (ApiException $e) {
             //$this->logger->error($e->getMessage());
+            return;
         }
     }
 

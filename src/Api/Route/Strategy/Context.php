@@ -8,17 +8,17 @@ class Context
     public function __construct($strategyId, $controller, $method, $parameters)
     {
         switch ($strategyId) {
-        case \FastRoute\Dispatcher::NOT_FOUND:
-            $this->strategy = new RouteNotFound();
-            break;
+            case \FastRoute\Dispatcher::NOT_FOUND:
+                $this->strategy = new RouteNotFound();
+                break;
 
-        case \FastRoute\Dispatcher::FOUND:
-            $this->strategy = new RouteFound($controller, $method, $parameters);
-            break;
+            case \FastRoute\Dispatcher::FOUND:
+                $this->strategy = new RouteFound($controller, $method, $parameters);
+                break;
 
-        default:
-            $this->strategy = new RouteDefault();
-            break;
+            default:
+                $this->strategy = new RouteDefault();
+                break;
         }
     }
 
