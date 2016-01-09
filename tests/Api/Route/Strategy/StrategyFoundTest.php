@@ -1,6 +1,8 @@
 <?php
 namespace Api\Route\Strategy;
 
+use League\Container\Container;
+
 class StrategyFoundTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -39,14 +41,14 @@ class StrategyFoundTest extends \PHPUnit_Framework_TestCase
         $strategy->render();
     }
 
-    /* need to mock... to be coded
     public function testPassingValidController()
     {
         $controller = 'ServerInfo';
         $method = 'getInfo';
-        $parameters = array();
-        $strategy = new StrategyFound($controller, $method, $parameters);
+        $container = new Container;
+        $container->add('ControllerFactory', new \Api\Controller\Factory);
+        $parameters = ['container' => $container];
+        $strategy = new RouteFound($controller, $method, $parameters);
         $strategy->render();
     }
-    */
 }

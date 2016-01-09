@@ -10,11 +10,10 @@ class Dispatcher
         $this->dispatcher = $dispatcher;
     }
 
-    public function dispatch()
+    public function dispatch($method, $request)
     {
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-        $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
+        $uri = rawurldecode(parse_url($request, PHP_URL_PATH));
+        $routeInfo = $this->dispatcher->dispatch($method, $uri);
         return $routeInfo;
     }
 }

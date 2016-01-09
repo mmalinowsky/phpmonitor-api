@@ -10,22 +10,6 @@ use League\Container\Container as Container;
 
 class ServerInfoTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetInfo()
-    {
-        $_SERVER['SERVER_ADDR'] = '127.0.0.1';
-        $formatMock = $this->getMockBuilder('Api\Format\FormatInterface')->getMock();
-        $formatProcessor = $this->getMock('Api\Format\Processor', array('setHeader', 'renderData'));
-        $formatProcessor->expects($this->any())->method('setHeader')->will($this->returnValue('set'));
-        $container = new Container;
-        $container->add('ModuleFacade', 'Api\Module\Facade')->withArgument(new \Api\Module\Factory)->withArgument(new \Api\Module\Composite);
-        $container->add('FormatProcessor', $formatProcessor);
-        $container->add('FormatFactory', 'Api\Format\Factory');
-        $container->add('ControllerFactory', 'Api\Controller\Factory');
-
-        $controller = new ServerInfo();
-        $controller->getInfo($container, 'json');
-    }
-
    
     public function testIfWeCanPassWhiteListWhenOurIpIsNotOnList()
     {
@@ -53,7 +37,8 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
     {
         $moduleFacade = new ModuleFacade(new ModuleFactory, new ModuleComposite);
         $controller = new ServerInfo();
-        $data = $this->invokeMethod($controller, 'addModulesAndGetData', array($moduleFacade, new \Api\Config));
+        $this->invokeMethod($controller, 'addModules', array($moduleFacade, new \Api\Config));
+        $data = $moduleFacade->returnModulesData();
         $this->assertArrayHasKey('hostname', $data);
     }
 

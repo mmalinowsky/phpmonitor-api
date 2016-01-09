@@ -11,12 +11,11 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException Api\Exception\Controller
     */
     public function testIfWeCanBuildNonExistentController()
     {
         $factory = new Factory;
         $controller = $factory->build('Api\Controller\InvalidController');
-        $this->assertTrue(is_object($controller));
     }
 }

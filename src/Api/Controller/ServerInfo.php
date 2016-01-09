@@ -5,7 +5,6 @@ use Api\Config as Config;
 use Api\Module\Facade as ModuleFacade;
 use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
-use Api\Module\Factory as ModuleFactory;
 
 class ServerInfo
 {
@@ -20,11 +19,12 @@ class ServerInfo
     public function getInfo($container, $format, $pingHostname = null)
     {
         is_null($pingHostname) ? $this->config->hostToPing = $this->config->defaultHostToPing : $this->config->hostToPing = $pingHostname;
-        $renderData = $this->addModulesAndGetData($container->get('ModuleFacade'), $this->config);
+        $this->addModules($container->get('ModuleFacade'), $this->config);
+        $renderData = $container->get('ModuleFacade')->returnModulesData();
         if (!$this->canUserPassWhiteList($_SERVER['SERVER_ADDR'])) {
             $renderData = ['error' => 'Your ip is not on whitelist.'];
         }
-        $this->renderFormat($container->get('FormatFactory'), $container->get('FormatProcessor'), $format, $renderData);
+        echo $this->renderFormat($container->get('FormatFactory'), $container->get('FormatProcessor'), $format, $renderData);
     }
 
     private function canUserPassWhiteList($clientIp)
@@ -46,10 +46,10 @@ class ServerInfo
             $formatClass = $formatFactory->createFormat('json');
         }
         $formatProcessor->setHeader($formatClass);
-        echo $formatProcessor->renderData($formatClass, $data);
+        return $formatProcessor->renderData($formatClass, $data);
     }
 
-    private function addModulesAndGetData(ModuleFacade $moduleFacade, $config)
+    private function addModules(ModuleFacade $moduleFacade, $config)
     {
         $moduleFacade->addModule(
             'System',
@@ -72,6 +72,5 @@ class ServerInfo
             $config->memcachedPort
             ]
         );
-        return $moduleFacade->returnModulesData();
     }
 }

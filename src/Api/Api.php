@@ -15,7 +15,7 @@ class Api
 
     public function run()
     {
-        $routeInfo = $this->dispatcher->dispatch();
+        $routeInfo = $this->dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
         $this->router->handle($routeInfo);
     }
 }

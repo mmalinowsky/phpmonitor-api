@@ -6,13 +6,6 @@ use Api\Route\Strategy\Context as StrategyContext;
 
 class Router
 {
-    
-    private $controllerFactory;
-
-    public function __construct($controllerFactory)
-    {
-        $this->controllerFactory = $controllerFactory;
-    }
 
     public function handle($routeInfo)
     {
