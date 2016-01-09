@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" bootstrap="vendor/autoload.php">
+    <testsuites>
+	<testsuite name="Application Test Suite">
+	    <directory>./tests</directory>
+	</testsuite>
+    </testsuites>
+    <filter>
+	<whitelist>
+	    <directory suffix=".php">./tests/</directory>
+	    <exclude>
+	    </exclude>
+	</whitelist>
+    </filter>
+    <logging>
+          <log type="coverage-html" target="../apicoverage" lowUpperBound="35"
+       highLowerBound="70"/>
+    </logging>
+</phpunit>
