@@ -29,7 +29,7 @@ class ServerInfo
 
     private function canUserPassWhiteList($clientIp)
     {
-        if ($this->config->whitelistenabled) {
+        if ($this->config->whitelistEnabled) {
             if (!in_array($clientIp, $this->config->whitelist)) {
                 return false;
             }
