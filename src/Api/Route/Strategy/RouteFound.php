@@ -18,12 +18,7 @@ class RouteFound extends StrategyAbstract
 
     public function render()
     {
-        try {
             $this->invokeController($this->controller, $this->method, $this->parameters);
-        } catch (\Exception $e) {
-            $this->invokeController('Api\Controller\DefaultController', 'render', ['message' => $e->getMessage()]);
-            return;
-        }
     }
 
     private function invokeController($controllerName, $method, $parameters)

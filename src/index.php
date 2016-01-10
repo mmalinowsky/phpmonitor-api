@@ -29,7 +29,7 @@ $dispatcher = FastRoute\simpleDispatcher(
 );
 
 $api = new Api\Api(
-    new Router(new Api\Controller\Factory),
+    new Router,
     new Api\Route\Dispatcher($dispatcher)
 );
 $api->run();
