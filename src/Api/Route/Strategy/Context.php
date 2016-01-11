@@ -3,21 +3,21 @@ namespace Api\Route\Strategy;
 
 class Context
 {
-    private $strategy = null;
+    private $strategy;
 
-    public function __construct($strategyId, $controller, $method, $parameters)
+    public function __construct($strategyId, $strategyFactory, $controller, $method, $parameters)
     {
         switch ($strategyId) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                $this->strategy = new RouteNotFound();
+                $this->strategy = $strategyFactory->build(\FastRoute\Dispatcher::NOT_FOUND);
                 break;
 
             case \FastRoute\Dispatcher::FOUND:
-                $this->strategy = new RouteFound($controller, $method, $parameters);
-                break;
-
-            default:
-                $this->strategy = new RouteDefault();
+                $this->strategy = $strategyFactory->build(\FastRoute\Dispatcher::FOUND,
+                    [$controller,
+                    $method,
+                    $parameters]
+                );
                 break;
         }
     }

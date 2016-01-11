@@ -16,7 +16,11 @@ abstract class Mysql implements ModuleInterface
         }
 
         list($hostname, $user, $password) = func_get_args();
-        
+        $this->connect($hostname, $user, $password);
+    }
+
+    private function connect($hostname, $user, $password)
+    {
         if (!class_exists('\mysqli')) {
             throw new ApiException('Mysqli class not found');
         }

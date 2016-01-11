@@ -15,6 +15,7 @@ $dispatcher = FastRoute\simpleDispatcher(
         $container->add('FormatFactory', 'Api\Format\Factory');
         $container->add('ControllerFactory', 'Api\Controller\Factory');
         $container->add('Config', 'Api\Config');
+        $container->add('StrategyFactory', 'Api\Route\Strategy\Factory');
         
         $r->addRoute(
             'GET',

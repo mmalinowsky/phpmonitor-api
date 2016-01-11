@@ -3,19 +3,18 @@ namespace Api\Route\Strategy;
 
 class ContextTest extends \PHPUnit_Framework_TestCase
 {
-    protected $container;
-    protected $controller;
-    protected $method;
-    protected $formatClass;
-    protected $parameters;
+    private $controller;
+    private $method;
+    private $formatClass;
+    private $parameters;
 
     public function setUp()
     {
-        $this->container = null;
         $this->controller = 'ServerInfo';
         $this->method = 'getInfo';
         $this->formatClass = null;
         $this->parameters = null;
+        $this->strategyFactory = new \Api\Route\Strategy\Factory;
     }
 
     public function testStrategyNotFoundWithNonExistingController()
@@ -23,35 +22,26 @@ class ContextTest extends \PHPUnit_Framework_TestCase
         $strategyId = \FastRoute\Dispatcher::NOT_FOUND;
         $controller = 'NonExistentController';
         $method = 'unknown';
-        $context = new Context($strategyId, $this->controller, $this->method, $this->formatClass, $this->parameters);
-        $contextRef = $this->setPropertyAccessible($context, 'strategy');
-        $this->assertTrue(get_class($contextRef->getValue($context)) == 'Api\Route\Strategy\RouteNotFound');
+        $this->getContextRefTest($strategyId, $method, $controller, 'Api\Route\Strategy\RouteNotFound');
     }
-
+    
     public function testStrategyNotFoundWithExistingControllerAndValidMethod()
     {
         $strategyId = \FastRoute\Dispatcher::NOT_FOUND;
-        $controller = 'ServerInfo';
-        $method = 'getInfo';
-        $context = new Context($strategyId, $this->controller, $this->method, $this->formatClass, $this->parameters);
-        $contextRef = $this->setPropertyAccessible($context, 'strategy');
-        $this->assertTrue(get_class($contextRef->getValue($context)) == 'Api\Route\Strategy\RouteNotFound');
+        $this->getContextRefTest($strategyId, $this->method, $this->controller, 'Api\Route\Strategy\RouteNotFound');
     }
 
     public function testStrategyFound()
     {
         $strategyId = \FastRoute\Dispatcher::FOUND;
-        $context = new Context($strategyId, $this->controller, $this->method, $this->formatClass, $this->parameters);
-        $contextRef = $this->setPropertyAccessible($context, 'strategy');
-        $this->assertTrue(get_class($contextRef->getValue($context)) == 'Api\Route\Strategy\RouteFound');
+        $this->getContextRefTest($strategyId, $this->method, $this->controller, 'Api\Route\Strategy\RouteFound');
     }
 
-    public function testStrategyDefault()
+    private function getContextRefTest($strategyId, $method, $controller, $strategyClassPath)
     {
-        $strategyId = 1275675;
-        $context = new Context($strategyId, $this->controller, $this->method, $this->formatClass, $this->parameters);
+        $context = new Context($strategyId, $this->strategyFactory, $controller, $method, $this->formatClass, $this->parameters);
         $contextRef = $this->setPropertyAccessible($context, 'strategy');
-        $this->assertTrue(get_class($contextRef->getValue($context)) == 'Api\Route\Strategy\RouteDefault');
+        $this->assertTrue(get_class($contextRef->getValue($context)) == $strategyClassPath);
     }
 
     public function setPropertyAccessible(&$object, $propertyName)
