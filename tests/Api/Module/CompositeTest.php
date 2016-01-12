@@ -8,7 +8,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
     {
         $composite = new Composite;
         $componentFactory = new Factory;
-        $composite->addComponent($componentFactory->build('System', 'Linux', array('test')));
+        $composite->addComponent($componentFactory->build('System', 'Linux', ['test']));
         $reflection = $this->setPropertyAccessible($composite, 'modules');
         $this->assertCount(1, $reflection->getValue($composite));
         $this->assertTrue(get_class($reflection->getValue($composite)[0]) == 'Api\Module\Linux\System');
@@ -18,7 +18,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
     {
         $composite = new Composite;
         $componentFactory = new Factory;
-        $composite->addComponent($componentFactory->build('System', 'Windows', array('test')));
+        $composite->addComponent($componentFactory->build('System', 'Windows', ['test']));
         $reflection = $this->setPropertyAccessible($composite, 'modules');
         $this->assertCount(1, $reflection->getValue($composite));
         $this->assertTrue(get_class($reflection->getValue($composite)[0]) == 'Api\Module\Windows\System');

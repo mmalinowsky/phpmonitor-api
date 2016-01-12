@@ -1,7 +1,7 @@
 <?php
 namespace Api\Route\Strategy;
 
-class RouteFound extends StrategyAbstract
+class RouteFound implements StrategyInterface
 {
     private $controller;
     private $method;

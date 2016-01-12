@@ -1,7 +1,7 @@
 <?php
 namespace Api\Route\Strategy;
 
-class RouteNotFound extends StrategyAbstract
+class RouteNotFound implements StrategyInterface
 {
     private $message = 'Routing Not found.';
 

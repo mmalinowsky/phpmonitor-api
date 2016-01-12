@@ -9,7 +9,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function testBuildingValidModule()
     {
         $moduleFactory = new Factory;
-        $module = $moduleFactory->build('System', 'Linux', array('google.com'));
+        $module = $moduleFactory->build('System', 'Linux', ['google.com']);
         $this->assertTrue(is_object($module));
     }
     

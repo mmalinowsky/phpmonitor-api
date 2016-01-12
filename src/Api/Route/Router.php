@@ -16,7 +16,7 @@ class Router
         $placeHolder = $routeInfo[2];
         $parameters = array_merge(['container' => $container], $placeHolder);
 
-        $strategyContext = new StrategyContext($routeInfo[0], $container->get('StrategyFactory'), $controller, $method, $parameters);
+        $strategyContext = new StrategyContext($routeInfo[0], $controller, $method, $parameters);
         $strategyContext->strategyRender();
     }
     
@@ -25,9 +25,9 @@ class Router
         isset($routeInfo[1]['method']) || $routeInfo[1]['method']  = null;
         isset($routeInfo[1]['controller']) || $routeInfo[1]['controller'] = null;
         isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
-        isset($routeInfo[2]) || $routeInfo[2] = array();
+        isset($routeInfo[2]) || $routeInfo[2] = [];
         isset($routeInfo[2]['format']) || $routeInfo[2]['format'] = 'json';
-        isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = new \Leaguage\Container\Container;
+        isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
         return $routeInfo;
     }
 }

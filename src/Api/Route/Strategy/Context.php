@@ -5,18 +5,21 @@ class Context
 {
     private $strategy;
 
-    public function __construct($strategyId, $strategyFactory, $controller, $method, $parameters)
+    public function __construct($strategyId, $controller, $method, $parameters)
     {
+        $strategyFactory = new Factory;
         switch ($strategyId) {
             case \FastRoute\Dispatcher::NOT_FOUND:
                 $this->strategy = $strategyFactory->build(\FastRoute\Dispatcher::NOT_FOUND);
                 break;
-
             case \FastRoute\Dispatcher::FOUND:
-                $this->strategy = $strategyFactory->build(\FastRoute\Dispatcher::FOUND,
-                    [$controller,
-                    $method,
-                    $parameters]
+                $this->strategy = $strategyFactory->build(
+                    \FastRoute\Dispatcher::FOUND,
+                    [
+                        $controller,
+                        $method,
+                        $parameters
+                    ]
                 );
                 break;
         }

@@ -9,7 +9,7 @@ class Factory
 
     const MODULE_NAMESPACE = '\Api\Module\\';
 
-    public function build($className, $system, $args = array())
+    public function build($className, $system, $args = [])
     {
         $systemPrefix = 'Linux';
         if (strtoupper(substr($system, 0, 3)) === 'WIN') {

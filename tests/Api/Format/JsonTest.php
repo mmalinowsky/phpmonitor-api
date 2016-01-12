@@ -7,7 +7,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
 {
     public function testRenderIsReturningJson()
     {
-        $testArray = array('1','2');
+        $testArray = ['1','2'];
         $jsonFormat = new Json;
         $jsonData = $jsonFormat->render($testArray);
         json_decode($jsonData);

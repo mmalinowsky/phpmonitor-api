@@ -21,7 +21,7 @@ class Facade
      * @param string $moduleName
      * @param array  $args
      */
-    public function addModule($moduleName, $args = array())
+    public function addModule($moduleName, $args = [])
     {
         try {
             $module = $this->moduleFactory->build($moduleName, PHP_OS, $args);

@@ -3,6 +3,7 @@ namespace Api\Route\Strategy;
 
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     public function testBuildingValidClass()
     {
         $factory = new Factory;

@@ -94,7 +94,7 @@ abstract class System implements ModuleInterface
         }
 
         $data = explode("\n", $meminfoFile);
-        $meminfo = array();
+        $meminfo = [];
         foreach ($data as $line) {
             if (count(explode(":", $line)) >= 2) {
                 list($key, $val) = explode(":", $line);

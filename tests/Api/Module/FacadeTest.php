@@ -9,7 +9,7 @@ class FacadeTest extends \PHPUnit_Framework_TestCase
     public function testAddingExistingModule()
     {
         $moduleFacade = new ModuleFacade(new Factory, new Composite);
-        $moduleFacade->addModule('System', array('test'));
+        $moduleFacade->addModule('System', ['test']);
     }
 
     /**
@@ -18,6 +18,6 @@ class FacadeTest extends \PHPUnit_Framework_TestCase
     public function testAddingExisitngModuleWithInvalidArguments()
     {
         $moduleFacade = new ModuleFacade(new Factory, new Composite);
-        $moduleFacade->addModule('System', array());
+        $moduleFacade->addModule('System', []);
     }
 }

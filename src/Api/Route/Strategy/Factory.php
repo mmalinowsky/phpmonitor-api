@@ -3,7 +3,8 @@ namespace Api\Route\Strategy;
 
 class Factory
 {
-    public function build($strategyId, $args=array())
+
+    public function build($strategyId, $args = [])
     {
         $className = '';
         switch ($strategyId) {
@@ -16,7 +17,7 @@ class Factory
                 break;
         }
 
-        if(!class_exists($className)) {
+        if (!class_exists($className)) {
             throw new \Exception("Strategy {$className} not found");
         }
 
