@@ -1,6 +1,8 @@
 <?php
 namespace Api\Route\Strategy;
 
+use League\Container\Container as Container;
+
 class ContextTest extends \PHPUnit_Framework_TestCase
 {
     private $controller;
@@ -13,7 +15,8 @@ class ContextTest extends \PHPUnit_Framework_TestCase
         $this->controller = 'ServerInfo';
         $this->method = 'getInfo';
         $this->formatClass = null;
-        $this->parameters = null;
+        $this->parameters['container'] = new Container;
+        $this->parameters['container']->add('ControllerFactory', new \Api\Controller\Factory);
         $this->strategyFactory = new \Api\Route\Strategy\Factory;
     }
 
@@ -39,7 +42,7 @@ class ContextTest extends \PHPUnit_Framework_TestCase
 
     private function getContextRefTest($strategyId, $method, $controller, $strategyClassPath)
     {
-        $context = new Context($strategyId, $this->strategyFactory, $controller, $method, $this->formatClass, $this->parameters);
+        $context = new Context($strategyId, $controller, $method, $this->parameters);
         $contextRef = $this->setPropertyAccessible($context, 'strategy');
         $this->assertTrue(get_class($contextRef->getValue($context)) == $strategyClassPath);
     }

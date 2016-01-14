@@ -9,6 +9,7 @@ class Xml implements FormatInterface
     
     /**
      * Format data
+     *
      * @param mixed $data
      * @return mixed
      */
@@ -22,6 +23,7 @@ class Xml implements FormatInterface
     
     /**
      * Get Header
+     *
      * @return string
     */
     public function getHeader()

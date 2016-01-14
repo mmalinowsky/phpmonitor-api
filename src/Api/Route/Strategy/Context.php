@@ -18,7 +18,7 @@ class Context
                     [
                         $controller,
                         $method,
-                        $parameters
+                        $parameters,
                     ]
                 );
                 break;

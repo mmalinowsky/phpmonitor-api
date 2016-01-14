@@ -5,6 +5,7 @@ class Processor
 {
     /**
      * Set Header
+     *
      * @param FormatInterface $format
     */
     public function setHeader(FormatInterface $format)
@@ -14,7 +15,9 @@ class Processor
 
     /**
      * Return format data
+     *
      * @param FormatInterface $format
+     * @param mixed $data
      */
     public function format(FormatInterface $format, $data)
     {

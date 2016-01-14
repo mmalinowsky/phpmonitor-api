@@ -6,17 +6,21 @@ use Api\Route\Strategy\Context as StrategyContext;
 
 class Router
 {
+    private $container;
+
+    public function setContainer($container)
+    {
+        $this->container = $container;
+    }
 
     public function handle($routeInfo)
     {
         $routeInfo = $this->prepareRouteInfo($routeInfo);
         $method = $routeInfo[1]['method'];
         $controller = $routeInfo[1]['controller'];
-        $container = $routeInfo[1]['container'];
         $placeHolder = $routeInfo[2];
-        $parameters = array_merge(['container' => $container], $placeHolder);
-
-        $strategyContext = new StrategyContext($routeInfo[0], $controller, $method, $parameters);
+        $parameters = array_merge(['container' => $this->container], $placeHolder);
+        $strategyContext = new StrategyContext($routeInfo[0], $controller, $method, $parameters, $this->container);
         $strategyContext->strategyRender();
     }
     
@@ -27,7 +31,6 @@ class Router
         isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
         isset($routeInfo[2]) || $routeInfo[2] = [];
         isset($routeInfo[2]['format']) || $routeInfo[2]['format'] = 'json';
-        isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
         return $routeInfo;
     }
 }

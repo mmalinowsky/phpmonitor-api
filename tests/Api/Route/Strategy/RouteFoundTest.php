@@ -5,6 +5,17 @@ use League\Container\Container;
 
 class RouteFoundTest extends \PHPUnit_Framework_TestCase
 {
+
+    private $container;
+    private $parameters;
+
+    protected function setUp()
+    {
+        $this->container = new Container;
+        $this->container->add('ControllerFactory', new \Api\Controller\Factory);
+        $this->parameters['container'] = $this->container;
+    }
+
     /**
      * @expectedException \Exception
     */
@@ -12,8 +23,7 @@ class RouteFoundTest extends \PHPUnit_Framework_TestCase
     {
         $controller = 'SomeNonExistentController';
         $method = 'NonExistentMethod';
-        $parameters = array();
-        $strategy = new RouteFound($controller, $method, $parameters);
+        $strategy = new RouteFound($controller, $method, $this->parameters);
         $strategy->render();
     }
 
@@ -23,9 +33,8 @@ class RouteFoundTest extends \PHPUnit_Framework_TestCase
     public function testPassingExistentControllerWithNonValidMethod()
     {
         $controller = 'ServerInfo';
-        $method = 'NonExistentMethod';
-        $parameters = array();
-        $strategy = new RouteFound($controller, $method, $parameters);
+        $method = 'nonValidMethod';
+        $strategy = new RouteFound($controller, $method, $this->parameters);
         $strategy->render();
     }
 
@@ -36,8 +45,7 @@ class RouteFoundTest extends \PHPUnit_Framework_TestCase
     {
         $controller = 'ServerInfo';
         $method = 'getInfo';
-        $parameters = array();
-        $strategy = new RouteFound($controller, $method, $parameters);
+        $strategy = new RouteFound($controller, $method, $this->parameters);
         $strategy->render();
     }
 }
