@@ -46,7 +46,7 @@ class ServerInfo
             $formatClass = $formatFactory->createFormat('json');
         }
         $formatProcessor->setHeader($formatClass);
-        return $formatProcessor->renderData($formatClass, $data);
+        return $formatProcessor->format($formatClass, $data);
     }
 
     private function addModules(Facade $moduleFacade, $config)

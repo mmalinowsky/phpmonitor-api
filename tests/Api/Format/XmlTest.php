@@ -17,7 +17,7 @@ class XmlTest extends \PHPUnit_Framework_TestCase
         ];
         $xml = '<root><key1>1</key1><key2>2</key2><Errors><test>testvalue</test></Errors></root>';
         $xmlFormat = new Xml;
-        $xmlData = $xmlFormat->render($testArray);
+        $xmlData = $xmlFormat->formatData($testArray);
         $this->assertContains($xml, $xmlData);
     }
 }

@@ -20,9 +20,9 @@ $dispatcher = FastRoute\simpleDispatcher(
             'GET',
             '/get/serverinfo/{format}[/{pingHostname}]',
             [
-            'controller' => 'Api\Controller\ServerInfo',
-            'method'    => 'getInfo',
-            'container' => $container
+                'controller' => 'Api\Controller\ServerInfo',
+                'method'    => 'getInfo',
+                'container' => $container
             ]
         );
     }

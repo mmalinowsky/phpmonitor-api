@@ -10,10 +10,11 @@ interface FormatInterface
      * Get http header
      */
     public function getHeader();
+    
     /**
-     * Render Data
+     * Format Data
      * @param mixed $data
      * @return mixed
      */
-    public function render($data);
+    public function formatData($data);
 }

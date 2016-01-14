@@ -8,11 +8,11 @@ class Xml implements FormatInterface
 {
     
     /**
-     * Print data
+     * Format data
      * @param mixed $data
      * @return mixed
      */
-    public function render($data)
+    public function formatData($data)
     {
         $xml = new \SimpleXMLElement('<root/>');
         $this->array2XML($xml, $data);

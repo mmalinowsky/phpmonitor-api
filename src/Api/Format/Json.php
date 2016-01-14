@@ -8,11 +8,11 @@ class Json implements FormatInterface
 {
     
     /**
-     * Print data
+     * Format data
      * @param mixed $data
      * @return mixed
      */
-    public function render($data)
+    public function formatData($data)
     {
         return json_encode($data);
     }

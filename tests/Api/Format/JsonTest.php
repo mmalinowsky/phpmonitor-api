@@ -9,7 +9,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
     {
         $testArray = ['1','2'];
         $jsonFormat = new Json;
-        $jsonData = $jsonFormat->render($testArray);
+        $jsonData = $jsonFormat->formatData($testArray);
         json_decode($jsonData);
         $this->assertEquals(json_last_error(), JSON_ERROR_NONE);
     }

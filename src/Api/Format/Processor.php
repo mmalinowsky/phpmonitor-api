@@ -13,11 +13,11 @@ class Processor
     }
 
     /**
-     * Print data
+     * Return format data
      * @param FormatInterface $format
      */
-    public function renderData(FormatInterface $format, $data)
+    public function format(FormatInterface $format, $data)
     {
-        return $format->render($data);
+        return $format->formatData($data);
     }
 }
