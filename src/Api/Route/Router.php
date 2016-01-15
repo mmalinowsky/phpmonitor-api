@@ -1,7 +1,6 @@
 <?php
 namespace Api\Route;
 
-use Api\Controller\Factory as ControllerFactory;
 use Api\Route\Strategy\Context as StrategyContext;
 
 class Router
@@ -20,7 +19,7 @@ class Router
         $controller = $routeInfo[1]['controller'];
         $placeHolder = $routeInfo[2];
         $parameters = array_merge(['container' => $this->container], $placeHolder);
-        $strategyContext = new StrategyContext($routeInfo[0], $controller, $method, $parameters, $this->container);
+        $strategyContext = new StrategyContext($routeInfo[0], $controller, $method, $parameters);
         $strategyContext->strategyRender();
     }
     

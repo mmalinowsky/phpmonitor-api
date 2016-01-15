@@ -7,14 +7,12 @@ class RouteFound implements StrategyInterface
     private $method;
     private $parameters;
     private $controllerFactory;
-    private $container;
 
     public function __construct($controller, $method, $parameters)
     {
         $this->controller = $controller;
         $this->method = $method;
         $this->parameters = $parameters;
-        $this->container = $parameters['container'];
         $this->controllerFactory = $parameters['container']->get('ControllerFactory');
     }
 

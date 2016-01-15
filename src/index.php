@@ -1,6 +1,6 @@
 <?php
-use Api\Route\Router as Router;
-use League\Container\Container as Container;
+use Api\Route\Router;
+use League\Container\Container;
 
 require_once  __DIR__.("/../vendor/autoload.php");
 
