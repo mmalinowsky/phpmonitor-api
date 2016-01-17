@@ -6,10 +6,9 @@ require_once  __DIR__.("/../vendor/autoload.php");
 
 $dispatcher = FastRoute\simpleDispatcher(
     function (FastRoute\RouteCollector $r) {
-
         $r->addRoute(
             'GET',
-            '/get/serverinfo/{format}[/{pingHostname}]',
+            '/get/serverinfo/{format}[/{pingHostname:[a-zA-Z0-9+\.]+}]',
             [
                 'controller' => 'Api\Controller\ServerInfo',
                 'method'    => 'getInfo',

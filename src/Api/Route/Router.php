@@ -27,7 +27,6 @@ class Router
     {
         isset($routeInfo[1]['method']) || $routeInfo[1]['method']  = null;
         isset($routeInfo[1]['controller']) || $routeInfo[1]['controller'] = null;
-        isset($routeInfo[1]['container']) || $routeInfo[1]['container'] = null;
         isset($routeInfo[2]) || $routeInfo[2] = [];
         isset($routeInfo[2]['format']) || $routeInfo[2]['format'] = 'json';
         return $routeInfo;

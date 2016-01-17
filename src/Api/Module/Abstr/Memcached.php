@@ -34,6 +34,7 @@ abstract class Memcached implements ModuleInterface
         return array(
             'memcache_get'       => $statsArr['cmd_get'],
             'memcache_hits'      => $statsArr['get_hits'],
+            'memcache_miss'      => $statsArr['get_misses'],
             'memcache_max_bytes' => $statsArr['limit_maxbytes'],
             'memcache_bytes'     => $statsArr['bytes_written']
         );
