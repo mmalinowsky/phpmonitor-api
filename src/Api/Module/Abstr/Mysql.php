@@ -21,13 +21,13 @@ abstract class Mysql implements ModuleInterface
 
     private function connect($hostname, $user, $password)
     {
+        mysqli_report(MYSQLI_REPORT_STRICT);
         if (!class_exists('\mysqli')) {
             throw new ApiException('Mysqli class not found');
         }
-
-        $this->mysqlHandler = @new \mysqli($hostname, $user, $password);
-
-        if ($this->mysqlHandler->connect_errno || !$this->mysqlHandler) {
+        try {
+            $this->mysqlHandler = new \mysqli($hostname, $user, $password);
+        } catch (\mysqli_sql_exception $e) {
             throw new ApiException('Can\'t Connect to Mysql');
         }
     }

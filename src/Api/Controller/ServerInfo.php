@@ -54,22 +54,22 @@ class ServerInfo
         $moduleFacade->addModule(
             'System',
             [
-            $config->hostToPing
+                $config->hostToPing
             ]
         );
         $moduleFacade->addModule(
             'Mysql',
             [
-            $config->mysqlHost,
-            $config->mysqlUser,
-            $config->mysqlPassword
+                $config->mysqlHost,
+                $config->mysqlUser,
+                $config->mysqlPassword
             ]
         );
         $moduleFacade->addModule(
             'Memcached',
             [
-            $config->memcachedIp,
-            $config->memcachedPort
+                $config->memcachedIp,
+                $config->memcachedPort
             ]
         );
     }

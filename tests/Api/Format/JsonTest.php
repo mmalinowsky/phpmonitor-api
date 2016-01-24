@@ -5,7 +5,7 @@ use Api\Format\Json;
 
 class JsonTest extends \PHPUnit_Framework_TestCase
 {
-    public function testRenderIsReturningJson()
+    public function testRenderIsReturningProperJson()
     {
         $testArray = ['1','2'];
         $jsonFormat = new Json;
