@@ -8,7 +8,7 @@ $dispatcher = FastRoute\simpleDispatcher(
     function (FastRoute\RouteCollector $r) {
         $r->addRoute(
             'GET',
-            '/get/serverinfo/{format}[/{pingHostname:[a-zA-Z0-9+\.]+}]',
+            '/serverinfo/{format}[/{pingHostname:[a-zA-Z0-9+\.]+}]',
             [
                 'controller' => 'Api\Controller\ServerInfo',
                 'method'    => 'getInfo',
