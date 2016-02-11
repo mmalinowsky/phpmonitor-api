@@ -1,7 +1,7 @@
 <?php
 namespace Api\Module\Abstr;
 
-use Api\Exception\Api as ApiException;
+use Api\Exception\Module as ModuleException;
 use Api\Module\ModuleInterface as ModuleInterface;
 
 abstract class Memcached implements ModuleInterface
@@ -17,7 +17,7 @@ abstract class Memcached implements ModuleInterface
             throw new \InvalidArgumentException('Bad number of arguments');
         }
         if (!class_exists('\Memcached')) {
-            throw new ApiException('Can\'t find Memcached class');
+            throw new ModuleException('Can\'t find Memcached class');
         }
         
         list($ip, $port) = func_get_args();

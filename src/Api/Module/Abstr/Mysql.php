@@ -1,7 +1,7 @@
 <?php
 namespace Api\Module\Abstr;
 
-use Api\Exception\Api as ApiException;
+use Api\Exception\Module as ModuleException;
 use Api\Module\ModuleInterface;
 
 abstract class Mysql implements ModuleInterface
@@ -23,12 +23,12 @@ abstract class Mysql implements ModuleInterface
     {
         mysqli_report(MYSQLI_REPORT_STRICT);
         if (!class_exists('\mysqli')) {
-            throw new ApiException('Mysqli class not found');
+            throw new ModuleException('Mysqli class not found');
         }
         try {
             $this->mysqlHandler = new \mysqli($hostname, $user, $password);
         } catch (\mysqli_sql_exception $e) {
-            throw new ApiException('Can\'t Connect to Mysql');
+            throw new ModuleException('Can\'t Connect to Mysql');
         }
     }
 

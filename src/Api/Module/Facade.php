@@ -1,7 +1,7 @@
 <?php
 namespace Api\Module;
 
-use Api\Exception\Api as ApiException;
+use Api\Exception\Module as ModuleException;
 use Api\Module\Factory;
 
 class Facade
@@ -26,9 +26,8 @@ class Facade
         try {
             $module = $this->moduleFactory->build($moduleName, PHP_OS, $args);
             $this->moduleComposite->addComponent($module);
-        } catch (ApiException $e) {
-            //$this->logger->error($e->getMessage());
-            return;
+        } catch (ModuleException $e) {
+
         }
     }
 

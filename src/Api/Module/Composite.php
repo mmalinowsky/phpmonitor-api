@@ -18,6 +18,7 @@ class Composite implements ModuleInterface, CompositeInterface
 
     public function removeComponent()
     {
+        array_pop($this->modules);
     }
 
     /**
