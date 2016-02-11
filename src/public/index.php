@@ -2,7 +2,7 @@
 use Api\Route\Router;
 use League\Container\Container;
 
-require_once  __DIR__.("/../vendor/autoload.php");
+require_once  __DIR__.("/../../vendor/autoload.php");
 
 $dispatcher = FastRoute\simpleDispatcher(
     function (FastRoute\RouteCollector $r) {
