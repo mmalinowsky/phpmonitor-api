@@ -6,6 +6,7 @@ use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
 use Api\Module\Factory as ModuleFactory;
 use Api\Module\Composite as ModuleComposite;
+use Api\Config\ConfigJson as Config;
 use League\Container\Container as Container;
 
 class ServerInfoTest extends \PHPUnit_Framework_TestCase
@@ -37,7 +38,10 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
     {
         $moduleFacade = new ModuleFacade(new ModuleFactory, new ModuleComposite);
         $controller = new ServerInfo();
-        $this->invokeMethod($controller, 'addModules', array($moduleFacade, new \Api\Config));
+        $config = new Config;
+        $config->loadFromFile('Config.json');
+        $config->hostToPing = $config->defaultHostToPing;
+        $this->invokeMethod($controller, 'addModules', array($moduleFacade, $config));
         $data = $moduleFacade->returnModulesData();
         $this->assertArrayHasKey('hostname', $data);
     }

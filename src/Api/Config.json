@@ -1,0 +1,14 @@
+{
+    "memcachedIp": "localhost",
+    "memcachedPort": "11211",
+
+    "mysqlHost": "localhost",
+    "mysqlUser": "",
+    "mysqlPassword": "",
+
+    "whitelistEnabled": false,
+    "whitelist": [
+        "127.0.0.1"
+    ],
+    "defaultHostToPing": "google.com"
+}

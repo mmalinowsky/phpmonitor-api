@@ -27,4 +27,3 @@ after('deploy', 'deploy:configure');
 after('deploy', 'success');
 
 serverList('config/servers.yml');
-    

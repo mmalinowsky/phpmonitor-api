@@ -1,7 +1,7 @@
 <?php
 namespace Api\Controller;
 
-use Api\Config as Config;
+use Api\Config\ConfigJson as Config;
 use Api\Module\Facade as Facade;
 use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
@@ -14,6 +14,7 @@ class ServerInfo
     public function __construct()
     {
         $this->config = new Config();
+        $this->config->loadFromFile('Config.json');
     }
 
     public function getInfo($container, $format, $pingHostname = null)

@@ -17,6 +17,8 @@ $dispatcher = FastRoute\simpleDispatcher(
     }
 );
 
+$config = new Api\Config\ConfigJson;
+$config->loadFromFile('Config.json');
 
 $container = new Container;
 $container->add('ModuleFacade', 'Api\Module\Facade')
@@ -25,7 +27,7 @@ $container->add('ModuleFacade', 'Api\Module\Facade')
 $container->add('FormatProcessor', 'Api\Format\Processor');
 $container->add('FormatFactory', 'Api\Format\Factory');
 $container->add('ControllerFactory', 'Api\Controller\Factory');
-$container->add('Config', 'Api\Config');
+$container->add('Config', $config);
 
 $router = new Router;
 $router->setContainer($container);
