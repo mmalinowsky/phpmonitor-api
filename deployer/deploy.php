@@ -5,10 +5,7 @@ require '../vendor/deployphp/recipes/recipes/configure.php';
 // Define a server for deployment.
 // Let's name it "prod" and use port 22.
 set('keep_releases', 5);
-/*set('shared_dirs', [
-    'application',
-]);
-*/
+
 
 
 

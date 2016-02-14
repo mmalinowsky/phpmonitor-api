@@ -1,7 +1,6 @@
 <?php
 namespace Api\Module;
 
-use Api\Module\ModuleInterface;
 use Api\Exception\Api as ApiException;
 
 class Factory

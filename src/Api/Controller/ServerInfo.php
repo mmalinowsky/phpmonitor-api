@@ -4,11 +4,13 @@ namespace Api\Controller;
 use Api\Module\Facade as Facade;
 use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
+use Api\Config\ConfigProxy as Config;
+use League\Container\Container;
 
 class ServerInfo
 {
 
-    public function getInfo($container, $format, $pingHostname = null)
+    public function getInfo(Container $container, $format, $pingHostname = null)
     {
         $config = $container->get('Config');
         is_null($pingHostname) ? $config->hostToPing = $config->defaultHostToPing : $config->hostToPing = $pingHostname;
@@ -20,7 +22,7 @@ class ServerInfo
         echo $this->renderFormat($container->get('FormatFactory'), $container->get('FormatProcessor'), $format, $renderData);
     }
 
-    private function canUserPassWhiteList($clientIp, $config)
+    private function canUserPassWhiteList($clientIp, Config $config)
     {
         if ($config->whitelistEnabled) {
             if (!in_array($clientIp, $config->whitelist)) {
@@ -42,7 +44,7 @@ class ServerInfo
         return $formatProcessor->format($formatClass, $data);
     }
 
-    private function addModules(Facade $moduleFacade, $config)
+    private function addModules(Facade $moduleFacade, Config $config)
     {
         $moduleFacade->addModule(
             'System',
