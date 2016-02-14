@@ -16,10 +16,10 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
     {
         $ip = 'localhost';
         $controller = new ServerInfo();
-        $controllerRef = $this->setPropertyAccessible($controller, 'config');
-        $controllerRef->getValue($controller)->whitelistEnabled = true;
-        $controllerRef->getValue($controller)->whitelist = ['99.99.99.99'];
-        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip));
+        $config = new Config;
+        $config->whitelistEnabled = true;
+        $config->whitelist = ['99.99.99.99'];
+        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip, $config));
         $this->assertFalse($ret);
     }
 
@@ -27,10 +27,10 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
     {
         $ip = 'localhost';
         $controller = new ServerInfo();
-        $controllerRef = $this->setPropertyAccessible($controller, 'config');
-        $controllerRef->getValue($controller)->whitelistEnabled = true;
-        $controllerRef->getValue($controller)->whitelist = [$ip];
-        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip));
+        $config = new Config;
+        $config->whitelistEnabled = true;
+        $config->whitelist = [$ip];
+        $ret = $this->invokeMethod($controller, 'canUserPassWhiteList', array($ip, $config));
         $this->assertTrue($ret);
     }
 

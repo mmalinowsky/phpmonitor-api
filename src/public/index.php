@@ -17,8 +17,7 @@ $dispatcher = FastRoute\simpleDispatcher(
     }
 );
 
-$config = new Api\Config\ConfigJson;
-$config->loadFromFile('Config.json');
+$config = new Api\Config\ConfigProxy('Config.json');
 
 $container = new Container;
 $container->add('ModuleFacade', 'Api\Module\Facade')

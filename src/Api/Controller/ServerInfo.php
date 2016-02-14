@@ -1,37 +1,29 @@
 <?php
 namespace Api\Controller;
 
-use Api\Config\ConfigJson as Config;
 use Api\Module\Facade as Facade;
 use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
 
 class ServerInfo
 {
-    
-    private $config;
-
-    public function __construct()
-    {
-        $this->config = new Config();
-        $this->config->loadFromFile('Config.json');
-    }
 
     public function getInfo($container, $format, $pingHostname = null)
     {
-        is_null($pingHostname) ? $this->config->hostToPing = $this->config->defaultHostToPing : $this->config->hostToPing = $pingHostname;
-        $this->addModules($container->get('ModuleFacade'), $this->config);
+        $config = $container->get('Config');
+        is_null($pingHostname) ? $config->hostToPing = $config->defaultHostToPing : $config->hostToPing = $pingHostname;
+        $this->addModules($container->get('ModuleFacade'), $config);
         $renderData = $container->get('ModuleFacade')->returnModulesData();
-        if (!$this->canUserPassWhiteList($_SERVER['SERVER_ADDR'])) {
+        if (!$this->canUserPassWhiteList($_SERVER['SERVER_ADDR'], $config)) {
             $renderData = ['error' => 'Your ip is not on whitelist.'];
         }
         echo $this->renderFormat($container->get('FormatFactory'), $container->get('FormatProcessor'), $format, $renderData);
     }
 
-    private function canUserPassWhiteList($clientIp)
+    private function canUserPassWhiteList($clientIp, $config)
     {
-        if ($this->config->whitelistEnabled) {
-            if (!in_array($clientIp, $this->config->whitelist)) {
+        if ($config->whitelistEnabled) {
+            if (!in_array($clientIp, $config->whitelist)) {
                 return false;
             }
         }
