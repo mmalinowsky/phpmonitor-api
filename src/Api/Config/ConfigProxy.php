@@ -5,25 +5,30 @@ class ConfigProxy
 {
     private $config = null;
     const FORMATS = [
-                        ['extension' => 'json', 'name' => 'Api\Config\ConfigJson'],
+                        [
+                            'extension' => 'json',
+                            'configName' => 'Api\Config\ConfigJson'
+                        ],
                     ];
 
     public function __construct($filename)
     {
         $extension = explode('.', $filename);
-        $configName = $this->search(end($extension));
+        $extension = strtolower(end($extension));
+        $configName = $this->searchForConfigName($extension);
         $this->config = new $configName;
         
         $this->config->loadFromFile($filename);
     }
 
-    private function search($extension)
+    private function searchForConfigName($extension)
     {
-        foreach(self::FORMATS as $format) {
-            if($format['extension'] == $extension)
-                return $format['name'];
+        foreach (self::FORMATS as $format) {
+            if ($format['extension'] == $extension) {
+                return $format['configName'];
+            }
         }
-        throw new \Exception ('Config format can\'t be handled');
+        throw new \Exception('Config format can\'t be handled');
     }
 
     public function __get($name)
