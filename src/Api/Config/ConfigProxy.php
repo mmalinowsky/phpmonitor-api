@@ -4,7 +4,7 @@ namespace Api\Config;
 class ConfigProxy
 {
     private $config = null;
-    const FORMATS = [
+    private $formats = [
                         [
                             'extension' => 'json',
                             'configName' => 'Api\Config\ConfigJson'
@@ -28,7 +28,7 @@ class ConfigProxy
 
     private function searchForConfigName($extension)
     {
-        foreach (self::FORMATS as $format) {
+        foreach ($this->formats as $format) {
             if ($format['extension'] == $extension) {
                 return $format['configName'];
             }
