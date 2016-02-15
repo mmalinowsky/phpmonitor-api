@@ -36,18 +36,18 @@ abstract class System implements ModuleInterface
 
     protected function getPing($server_host, $port = 80, $timeout = 1)
     {
-        $ret = 0;
+        $pingMs = 0;
         if (!function_exists('fSockOpen')) {
             return 0;
         }
-        $ping_start = microtime(true);
-        $fP = @fSockOpen($server_host, $port, $errno, $errstr, $timeout);
-        $ping_end = microtime(true);
-        if (is_resource($fP)) {
-            $ret = round((($ping_end - $ping_start) * 1000), 0);
-            fclose($fP);
+        $pingStart = microtime(true);
+        $fsock = @fSockOpen($server_host, $port, $errno, $errstr, $timeout);
+        $pingEnd = microtime(true);
+        if (is_resource($fsock)) {
+            $pingMs = round((($pingEnd - $pingStart) * 1000), 0);
+            fclose($fsock);
         }
-        return $ret;
+        return $pingMs;
     }
 
     protected function getHostname()
@@ -65,7 +65,7 @@ abstract class System implements ModuleInterface
         if (!function_exists('disk_total_space')) {
             return 0;
         }
-        return (float)@disk_total_space("/");
+        return (float)disk_total_space("/");
     }
 
     protected function getDiskFree()
@@ -89,7 +89,7 @@ abstract class System implements ModuleInterface
     protected function getMemory()
     {
         $meminfoFile = file_get_contents('/proc/meminfo', false);
-        if ((bool)$meminfoFile === false) {
+        if (!(bool)$meminfoFile) {
             return 0;
         }
 
@@ -117,7 +117,7 @@ abstract class System implements ModuleInterface
         }
         
         $coreFile = file_get_contents('/proc/stat', false);
-        if ($coreFile == false) {
+        if (!$coreFile) {
             return 0;
         }
 
