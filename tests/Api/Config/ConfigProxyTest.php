@@ -4,11 +4,25 @@ namespace Api\Config;
 class ConfigProxyTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function setUp()
+    {
+        $this->config = new ConfigProxy('Config.json');
+    }
+
+    public function extensionProvider()
+    {
+        return
+        [
+            ['file.json', 'json'],
+            ['file.xml', 'xml'],
+            ['file.file.ExT', 'ext'],
+        ];
+    }
+
     public function testJsonSetAndGet()
     {
-        $config = new ConfigProxy('Config.json');
-        $config->someRandomProp = 'test';
-        $this->assertSame($config->someRandomProp, 'test');
+        $this->config->someRandomProp = 'test';
+        $this->assertSame($this->config->someRandomProp, 'test');
     }
 
     /**
@@ -21,9 +35,8 @@ class ConfigProxyTest extends \PHPUnit_Framework_TestCase
 
     public function testSearchForValidExtension()
     {
-        $config = new ConfigProxy('Config.json');
         $extension = 'json';
-        $ret = $this->invokeMethod($config, 'searchForConfigName', [$extension]);
+        $ret = $this->invokeMethod($this->config, 'searchForConfigName', [$extension]);
         $this->assertSame('Api\Config\ConfigJson', $ret);
     }
 
@@ -32,11 +45,19 @@ class ConfigProxyTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchForInvalidExtension()
     {
-        $config = new ConfigProxy('Config.json');
         $extension = 'xml';
-        $ret = $this->invokeMethod($config, 'searchForExtension', [$extension]);
+        $ret = $this->invokeMethod($this->config, 'searchForExtension', [$extension]);
     }
 
+    /**
+     * @dataProvider extensionProvider
+     */
+    public function testGetFileExtension($filename, $extension)
+    {
+        $ret = $this->invokeMethod($this->config, 'getFileExtension', [$filename]);
+        var_dump($ret);
+        $this->assertSame($ret, $extension);
+    }
 
     public function invokeMethod(&$object, $methodName, $args = array())
     {

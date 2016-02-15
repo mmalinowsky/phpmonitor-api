@@ -13,12 +13,17 @@ class ConfigProxy
 
     public function __construct($filename)
     {
-        $extension = explode('.', $filename);
-        $extension = strtolower(end($extension));
+        $extension = $this->getFileExtension($filename);
         $configName = $this->searchForConfigName($extension);
         $this->config = new $configName;
-        
         $this->config->loadFromFile($filename);
+    }
+
+    private function getFileExtension($filename)
+    {
+        $extension = explode('.', $filename);
+        $extension = strtolower(end($extension));
+        return $extension;
     }
 
     private function searchForConfigName($extension)
