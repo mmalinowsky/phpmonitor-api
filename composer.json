@@ -1,4 +1,13 @@
 {
+    "name": "phaniso/serverapi",
+    "description": "PHP server api",
+    "keywords": [
+        "api",
+        "monitor",
+        "server"
+    ],
+    "homepage": "https://phpmonitor.org",
+    "license": "GPL-2.0",
 	"require-dev": {
 		"phpunit/phpunit":"^4.0",
 		"squizlabs/php_codesniffer" : "2.*",

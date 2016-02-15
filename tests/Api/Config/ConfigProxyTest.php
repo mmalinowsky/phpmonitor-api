@@ -55,7 +55,6 @@ class ConfigProxyTest extends \PHPUnit_Framework_TestCase
     public function testGetFileExtension($filename, $extension)
     {
         $ret = $this->invokeMethod($this->config, 'getFileExtension', [$filename]);
-        var_dump($ret);
         $this->assertSame($ret, $extension);
     }
 
