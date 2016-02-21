@@ -3,6 +3,7 @@ namespace Api\Config;
 
 class ConfigJson implements ConfigInterface
 {
+
     private $data = [];
 
     public function loadFromFile($filename)

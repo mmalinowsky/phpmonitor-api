@@ -3,6 +3,7 @@ namespace Api\Format;
 
 class Processor
 {
+
     /**
      * Set Header
      *

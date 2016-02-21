@@ -3,8 +3,9 @@ namespace Api\Module;
 
 class Composite implements ModuleInterface, CompositeInterface
 {
-    private $modules = array();
-    private $modulesData = array();
+
+    private $modules = [];
+    private $modulesData = [];
 
     public function __construct()
     {

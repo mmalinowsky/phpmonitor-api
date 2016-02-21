@@ -19,21 +19,29 @@ class ServerInfo
         if (!$this->canUserPassWhiteList($_SERVER['SERVER_ADDR'], $config)) {
             $renderData = ['error' => 'Your ip is not on whitelist.'];
         }
-        echo $this->renderFormat($container->get('FormatFactory'), $container->get('FormatProcessor'), $format, $renderData);
+        echo $this->renderFormat(
+            $container->get('FormatFactory'),
+            $container->get('FormatProcessor'),
+            $format, $renderData
+        );
     }
 
     private function canUserPassWhiteList($clientIp, Config $config)
     {
         if ($config->whitelistEnabled) {
-            if (!in_array($clientIp, $config->whitelist)) {
+            if (! in_array($clientIp, $config->whitelist)) {
                 return false;
             }
         }
         return true;
     }
 
-    private function renderFormat(FormatFactory $formatFactory, FormatProcessor $formatProcessor, $format, array $data)
-    {
+    private function renderFormat(
+        FormatFactory $formatFactory,
+        FormatProcessor $formatProcessor,
+        $format,
+        array $data
+    ) {
         try {
             $formatClass = $formatFactory->createFormat($format);
         } catch (\Exception $e) {

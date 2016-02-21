@@ -3,13 +3,15 @@ namespace Api\Config;
 
 class ConfigProxy
 {
+
     private $config = null;
-    private $formats = [
-                        [
-                            'extension' => 'json',
-                            'configName' => 'Api\Config\ConfigJson'
-                        ],
-                    ];
+    private $formats = 
+    [
+        [
+            'extension' => 'json',
+            'configName' => 'Api\Config\ConfigJson'
+        ],
+    ];
 
     public function __construct($filename)
     {

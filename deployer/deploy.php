@@ -2,13 +2,8 @@
 // All Deployer recipes are based on `recipe/common.php`.
 require 'recipe/common.php';
 require '../vendor/deployphp/recipes/recipes/configure.php';
-// Define a server for deployment.
-// Let's name it "prod" and use port 22.
+
 set('keep_releases', 5);
-
-
-
-
 set('repository', 'https://github.com/phaniso/Multi-Server-Api.git');
 
 task('deploy', [

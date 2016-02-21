@@ -1,13 +1,16 @@
 <?php
 namespace Api;
 
+use Route\Router;
+use Route\Dispatcher;
+
 class Api
 {
     
     private $router;
     private $dispatcher;
 
-    public function __construct(Route\Router $router, Route\Dispatcher $dispatcher)
+    public function __construct(Router $router, Dispatcher $dispatcher)
     {
         $this->router = $router;
         $this->dispatcher = $dispatcher;
