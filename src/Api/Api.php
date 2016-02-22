@@ -1,8 +1,8 @@
 <?php
 namespace Api;
 
-use Route\Router;
-use Route\Dispatcher;
+use Api\Route\Router;
+use Api\Route\Dispatcher;
 
 class Api
 {
