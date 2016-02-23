@@ -23,7 +23,7 @@ class Factory
                 break;
         }
 
-        if (!class_exists($className)) {
+        if ( ! class_exists($className)) {
             throw new \Exception("Strategy {$className} not found");
         }
 

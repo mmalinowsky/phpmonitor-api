@@ -3,6 +3,7 @@ namespace Api\Module;
 
 use Api\Exception\Module as ModuleException;
 use Api\Module\Factory;
+use Monolog\Logger;
 
 class Facade
 {
@@ -16,10 +17,19 @@ class Facade
      */
     private $moduleFactory;
 
-    public function __construct(Factory $moduleFactory, Composite $moduleComposite)
-    {
+    /**
+     * @var Monolog\Logger
+     */
+    private $logger;
+
+    public function __construct(
+        Factory $moduleFactory,
+        Composite $moduleComposite,
+        Logger $logger
+    ) {
         $this->moduleFactory = $moduleFactory;
         $this->moduleComposite = $moduleComposite;
+        $this->logger = $logger;
     }
 
     /**
@@ -33,7 +43,7 @@ class Facade
             $module = $this->moduleFactory->build($moduleName, PHP_OS, $args);
             $this->moduleComposite->addComponent($module);
         } catch (ModuleException $e) {
-
+            $this->logger->addWarning($e->getMessage());
         }
     }
 

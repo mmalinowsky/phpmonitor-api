@@ -20,6 +20,7 @@
 		"nikic/fast-route" : "*",
 		"league/container" : "*",
 		"deployer/deployer": "3.*",
-        "deployphp/recipes": "~3.0"
+        "deployphp/recipes": "~3.0",
+        "monolog/monolog": "^1.17"
 	}
 }
