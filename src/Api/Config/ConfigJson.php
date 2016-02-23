@@ -54,7 +54,7 @@ class ConfigJson implements ConfigInterface
      */
     private function isFileReadable($fullPath)
     {
-        if (!is_readable($fullPath)) {
+        if ( ! is_readable($fullPath)) {
             throw new \Exception('config is not readable');
         }
     }

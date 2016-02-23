@@ -16,7 +16,7 @@ class ServerInfo
         is_null($pingHostname) ? $config->hostToPing = $config->defaultHostToPing : $config->hostToPing = $pingHostname;
         $this->addModules($container->get('ModuleFacade'), $config);
         $renderData = $container->get('ModuleFacade')->returnModulesData();
-        if (!$this->canUserPassWhiteList($_SERVER['SERVER_ADDR'], $config)) {
+        if ( ! $this->canUserPassWhiteList($_SERVER['SERVER_ADDR'], $config)) {
             $renderData = ['error' => 'Your ip is not on whitelist.'];
         }
         echo $this->renderFormat(
@@ -30,7 +30,7 @@ class ServerInfo
     private function canUserPassWhiteList($clientIp, Config $config)
     {
         if ($config->whitelistEnabled) {
-            if (! in_array($clientIp, $config->whitelist)) {
+            if ( ! in_array($clientIp, $config->whitelist)) {
                 return false;
             }
         }

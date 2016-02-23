@@ -7,7 +7,7 @@ class Factory
 {
     public function build($name)
     {
-        if (!class_exists($name)) {
+        if ( ! class_exists($name)) {
             throw new ControllerException($name.' class not found.');
         }
         return new $name;

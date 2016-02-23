@@ -16,7 +16,7 @@ abstract class Memcached implements ModuleInterface
         if (func_num_args() != 2) {
             throw new \InvalidArgumentException('Bad number of arguments');
         }
-        if (!class_exists('\Memcached')) {
+        if ( ! class_exists('\Memcached')) {
             throw new ModuleException('Can\'t find Memcached class');
         }
         
