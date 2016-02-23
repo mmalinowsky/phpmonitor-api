@@ -18,7 +18,7 @@ class Facade
     private $moduleFactory;
 
     /**
-     * @var Monolog\Logger
+     * @var \Monolog\Logger
      */
     private $logger;
 
