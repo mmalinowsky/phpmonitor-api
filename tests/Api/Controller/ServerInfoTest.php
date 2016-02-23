@@ -36,7 +36,10 @@ class ServerInfoTest extends \PHPUnit_Framework_TestCase
 
     public function testAddingModulesAndGettingData()
     {
-        $moduleFacade = new ModuleFacade(new ModuleFactory, new ModuleComposite);
+        $logger = $this->getMockBuilder('Monolog\Logger')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $moduleFacade = new ModuleFacade(new ModuleFactory, new ModuleComposite, $logger);
         $controller = new ServerInfo();
         $config = new Config('Config.json');
         $config->hostToPing = $config->defaultHostToPing;
