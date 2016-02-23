@@ -13,7 +13,7 @@ class Factory
 
     public function createFormat($type)
     {
-        if (!array_key_exists($type, $this->types) 
+        if (!array_key_exists($type, $this->types)
           || !class_exists($this->types[$type])
         ) {
             throw new ApiException('Format Type: '.$type.' not found.');

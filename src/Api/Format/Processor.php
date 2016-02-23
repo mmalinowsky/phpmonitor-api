@@ -8,7 +8,7 @@ class Processor
      * Set Header
      *
      * @param FormatInterface $format
-    */
+     */
     public function setHeader(FormatInterface $format)
     {
         header($format->getHeader());

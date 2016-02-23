@@ -3,12 +3,22 @@ namespace Api\Route\Strategy;
 
 class RouteFound implements StrategyInterface
 {
+
     private $controller;
+    /**
+     * @var string
+     */
     private $method;
+    /**
+     * @var array
+     */
     private $parameters;
+    /**
+     * @var \Api\Controller\Factory
+     */
     private $controllerFactory;
 
-    public function __construct($controller, $method, $parameters)
+    public function __construct($controller, $method, array $parameters)
     {
         $this->controller = $controller;
         $this->method = $method;
@@ -16,12 +26,22 @@ class RouteFound implements StrategyInterface
         $this->controllerFactory = $parameters['container']->get('ControllerFactory');
     }
 
+    /**
+     * Render Controller method
+     */
     public function render()
     {
-            $this->invokeController($this->controller, $this->method, $this->parameters);
+        $this->invokeController($this->controller, $this->method, $this->parameters);
     }
 
-    private function invokeController($controllerName, $method, $parameters)
+    /**
+     * Invoke controller method
+     *
+     * @param string $controllerName
+     * @param string $method
+     * @param array $parameters
+     */
+    private function invokeController($controllerName, $method, array $parameters)
     {
         if (!$this->controllerFactory) {
             throw new \Exception('Controller Factory invalid.');

@@ -6,8 +6,14 @@ use Api\Route\Dispatcher;
 
 class Api
 {
-    
+
+    /**
+     * @var \Api\Route\Router
+     */
     private $router;
+    /**
+     * @var \Api\Route\Dispatcher
+     */
     private $dispatcher;
 
     public function __construct(Router $router, Dispatcher $dispatcher)
@@ -18,7 +24,10 @@ class Api
 
     public function run()
     {
-        $routeInfo = $this->dispatcher->dispatchUrl($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+        $routeInfo = $this->dispatcher->dispatchUrl(
+            $_SERVER['REQUEST_METHOD'],
+            $_SERVER['REQUEST_URI']
+        );
         $this->router->handle($routeInfo);
     }
 }

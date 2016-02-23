@@ -3,8 +3,13 @@ namespace Api\Module;
 
 class Composite implements ModuleInterface, CompositeInterface
 {
-
+    /**
+     * @var array
+     */
     private $modules = [];
+    /**
+     * @var array
+     */
     private $modulesData = [];
 
     public function __construct()
@@ -12,11 +17,19 @@ class Composite implements ModuleInterface, CompositeInterface
         $this->modulesData['status'] = 'online';
     }
 
+    /**
+     * Add module component
+     *
+     * @param \Api\Module\ModuleInterface $component
+     */
     public function addComponent(ModuleInterface $component)
     {
         $this->modules[] = $component;
     }
 
+    /**
+     * Pop module component
+     */
     public function removeComponent()
     {
         array_pop($this->modules);
@@ -35,6 +48,11 @@ class Composite implements ModuleInterface, CompositeInterface
         }
     }
 
+    /**
+     * Return modules data
+     *
+     * @return array $this->modulesData
+     */
     public function returnData()
     {
         $this->getModulesData();

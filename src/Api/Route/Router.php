@@ -6,6 +6,9 @@ use Api\Route\Strategy\Context as StrategyContext;
 class Router
 {
 
+    /**
+     * @var \League\Container\Container;
+     */
     private $container;
 
     public function setContainer($container)
@@ -13,6 +16,11 @@ class Router
         $this->container = $container;
     }
 
+    /**
+     * Handle route info
+     *
+     * @param array $routeInfo
+     */
     public function handle($routeInfo)
     {
         $routeInfo = $this->prepareRouteInfo($routeInfo);
@@ -24,6 +32,12 @@ class Router
         $strategyContext->strategyRender();
     }
     
+    /**
+     * Prepare route and fill with default value
+     *
+     * @param  array $routeInfo
+     * @return array $routeInfo
+     */
     private function prepareRouteInfo($routeInfo)
     {
         isset($routeInfo[1]['method']) || $routeInfo[1]['method']  = null;

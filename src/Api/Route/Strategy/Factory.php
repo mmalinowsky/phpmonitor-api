@@ -4,6 +4,12 @@ namespace Api\Route\Strategy;
 class Factory
 {
 
+    /**
+     * Build strategy class
+     *
+     * @param int $strategyId
+     * @param array $args
+     */
     public function build($strategyId, $args = [])
     {
         $className = '';

@@ -7,7 +7,13 @@ use Api\Module\Factory;
 class Facade
 {
     
+    /**
+     * @var Api\Module\ModuleComposite
+     */
     private $moduleComposite;
+    /**
+     * @var Api\Module\Factory
+     */
     private $moduleFactory;
 
     public function __construct(Factory $moduleFactory, Composite $moduleComposite)
@@ -31,6 +37,11 @@ class Facade
         }
     }
 
+    /**
+     * Return modules data
+     *
+     * @return array $this->ModuleComposite->returnData()
+     */
     public function returnModulesData()
     {
         return $this->moduleComposite->returnData();

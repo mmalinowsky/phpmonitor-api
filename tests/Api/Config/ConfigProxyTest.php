@@ -36,7 +36,7 @@ class ConfigProxyTest extends \PHPUnit_Framework_TestCase
     public function testSearchForValidExtension()
     {
         $extension = 'json';
-        $ret = $this->invokeMethod($this->config, 'searchForConfigName', [$extension]);
+        $ret = $this->invokeMethod($this->config, 'searchForConfigClass', [$extension]);
         $this->assertSame('Api\Config\ConfigJson', $ret);
     }
 

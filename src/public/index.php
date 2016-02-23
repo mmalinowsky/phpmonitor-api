@@ -1,5 +1,8 @@
 <?php
+
+use Api\Route\Dispatcher;
 use Api\Route\Router;
+use Api\Config\ConfigProxy;
 use League\Container\Container;
 
 require_once  __DIR__.("/../../vendor/autoload.php");
@@ -17,7 +20,7 @@ $dispatcher = FastRoute\simpleDispatcher(
     }
 );
 
-$config = new Api\Config\ConfigProxy('Config.json');
+$config = new ConfigProxy('Config.json');
 
 $container = new Container;
 $container->add('ModuleFacade', 'Api\Module\Facade')
@@ -33,6 +36,6 @@ $router->setContainer($container);
 
 $api = new Api\Api(
     $router,
-    new Api\Route\Dispatcher($dispatcher)
+    new Dispatcher($dispatcher)
 );
 $api->run();

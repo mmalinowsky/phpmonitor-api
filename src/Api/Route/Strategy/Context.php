@@ -3,9 +3,13 @@ namespace Api\Route\Strategy;
 
 class Context
 {
+
+    /**
+     * @var \Api\Route\Strategy\strategyInterface
+     */
     private $strategy;
 
-    public function __construct($strategyId, $controller, $method, $parameters)
+    public function __construct($strategyId, $controller, $method, array $parameters)
     {
         $strategyFactory = new Factory;
         switch ($strategyId) {
@@ -25,6 +29,9 @@ class Context
         }
     }
 
+    /**
+     * Render Startegy
+     */
     public function strategyRender()
     {
         $this->strategy->render();

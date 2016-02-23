@@ -22,7 +22,8 @@ class ServerInfo
         echo $this->renderFormat(
             $container->get('FormatFactory'),
             $container->get('FormatProcessor'),
-            $format, $renderData
+            $format,
+            $renderData
         );
     }
 

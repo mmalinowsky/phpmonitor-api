@@ -3,6 +3,7 @@ namespace Api\Controller;
 
 class DefaultController
 {
+
     public function render($message)
     {
         header('Content-Type: application/json');

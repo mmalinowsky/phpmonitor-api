@@ -5,7 +5,7 @@ class ConfigProxy
 {
 
     private $config = null;
-    private $formats = 
+    private $formats =
     [
         [
             'extension' => 'json',
@@ -16,7 +16,7 @@ class ConfigProxy
     public function __construct($filename)
     {
         $extension = $this->getFileExtension($filename);
-        $configName = $this->searchForConfigName($extension);
+        $configName = $this->searchForConfigClass($extension);
         $this->config = new $configName;
         $this->config->loadFromFile($filename);
     }
@@ -28,7 +28,7 @@ class ConfigProxy
         return $extension;
     }
 
-    private function searchForConfigName($extension)
+    private function searchForConfigClass($extension)
     {
         foreach ($this->formats as $format) {
             if ($format['extension'] == $extension) {
