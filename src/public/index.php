@@ -2,12 +2,9 @@
 
 use Api\Route\Dispatcher;
 use Api\Route\Router;
-use Api\Config\ConfigProxy;
 use League\Container\Container;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
-require_once  __DIR__.("/../../vendor/autoload.php");
+require_once  __DIR__.("/../Api/Bootstrap.php");
 
 $dispatcher = FastRoute\simpleDispatcher(
     function (FastRoute\RouteCollector $r) {
@@ -15,17 +12,11 @@ $dispatcher = FastRoute\simpleDispatcher(
             'GET',
             '/serverinfo/{format}[/{pingHostname:[[:alnum:].]+}]',
             [
-                'controller' => 'Api\Controller\ServerInfo',
+                'controller' => 'ServerInfo',
                 'method'    => 'getInfo',
             ]
         );
     }
-);
-
-$config = new ConfigProxy('Config.json');
-$logger = new Logger('logger');
-$logger->pushHandler(
-    new StreamHandler(__DIR__.'/../logs/log.txt', Logger::WARNING)
 );
 
 $container = new Container;

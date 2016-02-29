@@ -10,5 +10,6 @@
     "whitelist": [
         "127.0.0.1"
     ],
-    "defaultHostToPing": "google.com"
+    "defaultHostToPing": "google.com",
+    "environment": "production"
 }
