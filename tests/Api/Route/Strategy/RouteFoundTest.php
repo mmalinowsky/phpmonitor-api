@@ -2,6 +2,7 @@
 namespace Api\Route\Strategy;
 
 use League\Container\Container;
+use Api\Controller\Factory as ControllerFactory;
 
 class RouteFoundTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,7 @@ class RouteFoundTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->container = new Container;
-        $this->container->add('ControllerFactory', new \Api\Controller\Factory);
+        $this->container->add('ControllerFactory', new ControllerFactory);
         $this->parameters['container'] = $this->container;
     }
 
@@ -45,7 +46,8 @@ class RouteFoundTest extends \PHPUnit_Framework_TestCase
     {
         $controller = 'ServerInfo';
         $method = 'getInfo';
-        $strategy = new RouteFound($controller, $method, $this->parameters);
+        $parameters = ['container' => $this->container, 'format' => 'json'];
+        $strategy = new RouteFound($controller, $method, $parameters);
         $strategy->render();
     }
 }

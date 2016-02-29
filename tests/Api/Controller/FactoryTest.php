@@ -6,7 +6,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function testIfWeCanBuildValidController()
     {
         $factory = new Factory;
-        $controller = $factory->build('Api\Controller\ServerInfo');
+        $controller = $factory->build('ServerInfo');
         $this->assertTrue(is_object($controller));
     }
 
@@ -16,6 +16,6 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function testIfWeCanBuildNonExistentController()
     {
         $factory = new Factory;
-        $controller = $factory->build('Api\Controller\InvalidController');
+        $controller = $factory->build('InvalidController');
     }
 }
