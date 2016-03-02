@@ -23,6 +23,6 @@ class Json implements FormatInterface
     */
     public function getHeader()
     {
-        return 'Content-Type: application/json';
+        return 'application/json';
     }
 }

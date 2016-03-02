@@ -2,6 +2,7 @@
 namespace Api;
 
 use Monolog\Logger;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ErrorHandler
 {
@@ -24,8 +25,12 @@ class ErrorHandler
      * @param string $message
      */
     private function buildErrorMessage($message) {
-        header('Content-Type: application/json');
-        die(json_encode(['error' => $message]));
+        $response = new JsonResponse();
+        $response->setData(
+        [
+            'error' => $message
+        ]);
+        $response->send();
     }
     /**
      * Handling php error

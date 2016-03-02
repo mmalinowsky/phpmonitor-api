@@ -3,17 +3,6 @@ namespace Api\Format;
 
 class Processor
 {
-
-    /**
-     * Set Header
-     *
-     * @param FormatInterface $format
-     */
-    public function setHeader(FormatInterface $format)
-    {
-        header($format->getHeader());
-    }
-
     /**
      * Return format data
      *

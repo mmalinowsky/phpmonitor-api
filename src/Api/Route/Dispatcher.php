@@ -1,5 +1,6 @@
 <?php
 namespace Api\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class Dispatcher
 {
@@ -16,12 +17,13 @@ class Dispatcher
     /**
      * Dispatch url
      *
-     * @param string $method
      * @param string $request
      */
-    public function dispatchUrl($method, $request)
+    public function dispatchUrl(Request $request)
     {
-        $uri = rawurldecode(parse_url($request, PHP_URL_PATH));
+        $method = $request->getMethod();
+        $requestUri = $request->getRequestURI();
+        $uri = rawurldecode(parse_url($requestUri, PHP_URL_PATH));
         $routeInfo = $this->dispatcher->dispatch($method, $uri);
         return $routeInfo;
     }

@@ -1,12 +1,18 @@
 <?php
 namespace Api\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class DefaultController
 {
 
     public function render($message)
     {
-        header('Content-Type: application/json');
-        echo json_encode(['error' => $message]);
+        $response = new JsonResponse();
+        $response->setData(
+        [
+            $message
+        ]);
+        $response->send();
     }
 }

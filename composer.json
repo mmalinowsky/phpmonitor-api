@@ -21,6 +21,7 @@
 		"league/container" : "*",
 		"deployer/deployer": "3.*",
         "deployphp/recipes": "~3.0",
-        "monolog/monolog": "^1.17"
+        "monolog/monolog": "^1.17",
+        "symfony/http-foundation": "^3.0"
 	}
 }

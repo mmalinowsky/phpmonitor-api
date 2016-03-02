@@ -6,6 +6,7 @@ use Api\Format\Factory as FormatFactory;
 use Api\Format\Processor as FormatProcessor;
 use Api\Config\ConfigProxy as Config;
 use League\Container\Container;
+use Symfony\Component\HttpFoundation\Response;
 
 class ServerInfo
 {
@@ -13,18 +14,20 @@ class ServerInfo
     public function getInfo(Container $container, $format, $pingHostname = null)
     {
         $config = $container->get('Config');
+        $ip = $container->get('Request')->getClientIp();
         is_null($pingHostname) ? $config->hostToPing = $config->defaultHostToPing : $config->hostToPing = $pingHostname;
         $this->addModules($container->get('ModuleFacade'), $config);
         $renderData = $container->get('ModuleFacade')->returnModulesData();
-        if ( ! $this->canUserPassWhiteList($_SERVER['SERVER_ADDR'], $config)) {
+        if ( ! $this->canUserPassWhiteList($ip, $config)) {
             $renderData = ['error' => 'Your ip is not on whitelist.'];
         }
-        echo $this->renderFormat(
+        $response = $this->renderFormat(
             $container->get('FormatFactory'),
             $container->get('FormatProcessor'),
             $format,
             $renderData
         );
+        $response->send();
     }
 
     private function canUserPassWhiteList($clientIp, Config $config)
@@ -49,8 +52,10 @@ class ServerInfo
             $data = ['error' => 'Format type not supported.'];
             $formatClass = $formatFactory->createFormat('json');
         }
-        $formatProcessor->setHeader($formatClass);
-        return $formatProcessor->format($formatClass, $data);
+        $responseData = $formatProcessor->format($formatClass, $data);
+        $response = new Response($responseData);
+        $response->headers->set('Content-Type', $formatClass->getHeader());
+        return $response;
     }
 
     private function addModules(Facade $moduleFacade, Config $config)

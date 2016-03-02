@@ -28,7 +28,7 @@ class Xml implements FormatInterface
     */
     public function getHeader()
     {
-        return 'Content-Type: application/xml';
+        return 'application/xml';
     }
 
     private function array2XML($obj, $array)

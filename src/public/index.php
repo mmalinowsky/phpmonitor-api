@@ -29,7 +29,7 @@ $container->add('FormatFactory', 'Api\Format\Factory');
 $container->add('ControllerFactory', 'Api\Controller\Factory');
 $container->add('Config', $config);
 $container->add('Logger', $logger);
-
+$container->add('Request', $request);
 $router = new Router;
 $router->setContainer($container);
 
@@ -37,4 +37,4 @@ $api = new Api\Api(
     $router,
     new Dispatcher($dispatcher)
 );
-$api->run();
+$api->run($request);
