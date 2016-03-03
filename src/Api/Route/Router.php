@@ -15,7 +15,7 @@ use Api\Route\Strategy\RouteFound;
 class Router
 {
     /**
-     * @var Symfony\Component\Routing\RouteCollection
+     * @var \Symfony\Component\Routing\RouteCollection
      */
     private $routes;
 
