@@ -24,13 +24,16 @@ class ErrorHandler
      *
      * @param string $message
      */
-    private function buildErrorMessage($message) {
+    private function buildErrorMessage($message)
+    {
         $response = new JsonResponse();
         $response->setData(
-        [
+            [
             'error' => $message
-        ]);
+            ]
+        );
         $response->send();
+        die();
     }
     /**
      * Handling php error
@@ -38,7 +41,8 @@ class ErrorHandler
      * @param integer $level error level
      * @param string $message error message
      */
-    public function errorHandler($level, $message) {
+    public function errorHandler($level, $message)
+    {
         $this->logger->addWarning($message);
         $this->buildErrorMessage('Error occur.');
     }
@@ -47,7 +51,8 @@ class ErrorHandler
      *
      * @param object $exception exception class
      */
-    public function exceptionHandler($exception) {
+    public function exceptionHandler($exception)
+    {
         $this->logger->addWarning($exception->getMessage());
         $this->buildErrorMessage('Error occur.');
     }

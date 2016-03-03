@@ -10,7 +10,7 @@ class Factory
     public function build($name)
     {
         $className = $this->namespace.$name;
-        if ( ! class_exists($className)) {
+        if (! class_exists($className)) {
             throw new ControllerException($className.' class not found.');
         }
         return new $className;

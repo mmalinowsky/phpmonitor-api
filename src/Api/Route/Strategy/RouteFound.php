@@ -45,13 +45,13 @@ class RouteFound implements StrategyInterface
      */
     private function invokeController($controllerName, $method, array $parameters)
     {
-        if ( ! $this->controllerFactory) {
+        if (! $this->controllerFactory) {
             throw new \Exception('Controller Factory invalid.');
         }
         
         $controller = $this->controllerFactory->build($controllerName);
 
-        if ( ! method_exists($controller, $method)) {
+        if (! method_exists($controller, $method)) {
             throw new \Exception("Method called '{$method}' not found in '{$controllerName}'.");
         }
         call_user_func_array([$controller, $method], $parameters);

@@ -1,0 +1,5 @@
+serverInfoRoute:
+    path:     /serverinfo/{format}/{pinghostname}
+    defaults: { controller: 'ServerInfo', method: 'getInfo', format: 'json', pinghostname: null }
+    requirements:
+        pinghostname:  "[\\w.]+"

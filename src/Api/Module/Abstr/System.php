@@ -37,7 +37,7 @@ abstract class System implements ModuleInterface
     protected function getPing($server_host, $port = 80, $timeout = 1)
     {
         $pingMs = 0;
-        if ( ! function_exists('fSockOpen')) {
+        if (! function_exists('fSockOpen')) {
             return 0;
         }
         $pingStart = microtime(true);
@@ -52,7 +52,7 @@ abstract class System implements ModuleInterface
 
     protected function getHostname()
     {
-        if ( ! function_exists("gethostname")) {
+        if (! function_exists("gethostname")) {
             $ip = $_SERVER['SERVER_ADDR'];
             return gethostbyaddr($ip);
         }
@@ -62,7 +62,7 @@ abstract class System implements ModuleInterface
 
     protected function getDiskTotal()
     {
-        if ( ! function_exists('disk_total_space')) {
+        if (! function_exists('disk_total_space')) {
             return 0;
         }
         return (float)disk_total_space("/");
@@ -70,7 +70,7 @@ abstract class System implements ModuleInterface
 
     protected function getDiskFree()
     {
-        if ( ! function_exists('disk_free_space')) {
+        if (! function_exists('disk_free_space')) {
             return 0;
         }
         return (float)disk_free_space("/");
@@ -78,7 +78,7 @@ abstract class System implements ModuleInterface
 
     protected function getAvgLoad()
     {
-        if ( ! function_exists('sys_getloadavg')) {
+        if (! function_exists('sys_getloadavg')) {
             return 0;
         }
         
@@ -89,7 +89,7 @@ abstract class System implements ModuleInterface
     protected function getMemory()
     {
         $meminfoFile = file_get_contents('/proc/meminfo', false);
-        if ( ! (bool)$meminfoFile) {
+        if (! (bool)$meminfoFile) {
             return 0;
         }
 
@@ -112,12 +112,12 @@ abstract class System implements ModuleInterface
 
     protected function getCores()
     {
-        if ( ! is_readable('/proc/stat')) {
+        if (! is_readable('/proc/stat')) {
             return 0;
         }
         
         $coreFile = file_get_contents('/proc/stat', false);
-        if ( ! $coreFile) {
+        if (! $coreFile) {
             return 0;
         }
 

@@ -22,7 +22,7 @@ abstract class Mysql implements ModuleInterface
     private function connect($hostname, $user, $password)
     {
         mysqli_report(MYSQLI_REPORT_STRICT);
-        if ( ! class_exists('\mysqli')) {
+        if (! class_exists('\mysqli')) {
             throw new ModuleException('Mysqli class not found');
         }
         try {

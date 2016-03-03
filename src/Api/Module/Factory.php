@@ -17,12 +17,12 @@ class Factory
         }
 
         $className = self::MODULE_NAMESPACE.$systemPrefix.'\\'.$className;
-        if ( ! class_exists($className)) {
+        if (! class_exists($className)) {
             throw new ApiException('Invalid module given');
         }
 
         $reflectionClass = new \ReflectionClass($className);
-        if ( ! $reflectionClass->isSubclassOf(self::CONTRACT_NAMESPACE.'ModuleInterface')) {
+        if (! $reflectionClass->isSubclassOf(self::CONTRACT_NAMESPACE.'ModuleInterface')) {
             throw new ApiException('Not valid implementation of Module');
         }
 
