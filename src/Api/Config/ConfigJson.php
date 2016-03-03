@@ -1,6 +1,8 @@
 <?php
 namespace Api\Config;
 
+use Api\Contract\Config\ConfigInterface;
+
 class ConfigJson implements ConfigInterface
 {
 

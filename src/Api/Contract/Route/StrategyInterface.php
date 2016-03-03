@@ -1,5 +1,5 @@
 <?php
-namespace Api\Route\Strategy;
+namespace Api\Contract\Route;
 
 interface StrategyInterface
 {

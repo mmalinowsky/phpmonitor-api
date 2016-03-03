@@ -1,7 +1,7 @@
 <?php
 namespace Api\Module\Abstr;
 
-use Api\Module\ModuleInterface;
+use Api\Contract\Module\ModuleInterface;
 
 abstract class System implements ModuleInterface
 {

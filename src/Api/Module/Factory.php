@@ -7,6 +7,7 @@ class Factory
 {
 
     const MODULE_NAMESPACE = '\Api\Module\\';
+    const CONTRACT_NAMESPACE = '\Api\Contract\Module\\';
 
     public function build($className, $system, $args = [])
     {
@@ -21,7 +22,7 @@ class Factory
         }
 
         $reflectionClass = new \ReflectionClass($className);
-        if ( ! $reflectionClass->isSubclassOf(self::MODULE_NAMESPACE.'ModuleInterface')) {
+        if ( ! $reflectionClass->isSubclassOf(self::CONTRACT_NAMESPACE.'ModuleInterface')) {
             throw new ApiException('Not valid implementation of Module');
         }
 

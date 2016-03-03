@@ -1,5 +1,5 @@
 <?php
-namespace Api\Config;
+namespace Api\Contract\Config;
 
 interface ConfigInterface
 {

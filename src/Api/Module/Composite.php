@@ -1,6 +1,9 @@
 <?php
 namespace Api\Module;
 
+use Api\Contract\Module\ModuleInterface;
+use Api\Contract\Module\CompositeInterface;
+
 class Composite implements ModuleInterface, CompositeInterface
 {
     /**

@@ -1,6 +1,8 @@
 <?php
 namespace Api\Format;
 
+use Api\Contract\Format\FormatInterface;
+
 class Processor
 {
     /**

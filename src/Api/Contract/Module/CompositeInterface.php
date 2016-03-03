@@ -1,5 +1,5 @@
 <?php
-namespace Api\Module;
+namespace Api\Contract\Module;
 
 interface CompositeInterface
 {

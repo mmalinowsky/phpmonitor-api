@@ -2,7 +2,7 @@
 namespace Api\Module\Abstr;
 
 use Api\Exception\Module as ModuleException;
-use Api\Module\ModuleInterface;
+use Api\Contract\Module\ModuleInterface;
 
 abstract class Mysql implements ModuleInterface
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Api\Format;
+namespace Api\Contract\Format;
 
 /**
  * Class FormatInterface

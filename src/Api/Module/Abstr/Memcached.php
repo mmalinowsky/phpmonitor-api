@@ -2,7 +2,7 @@
 namespace Api\Module\Abstr;
 
 use Api\Exception\Module as ModuleException;
-use Api\Module\ModuleInterface as ModuleInterface;
+use Api\Contract\Module\ModuleInterface as ModuleInterface;
 
 abstract class Memcached implements ModuleInterface
 {
