@@ -16,10 +16,7 @@ class Api
      * @var \Api\Route\Dispatcher
      */
     private $dispatcher;
-    /**
-     * @var use Symfony\Component\HttpFoundation\Request
-     */
-    private $request;
+
     public function __construct(Router $router, Dispatcher $dispatcher)
     {
         $this->router = $router;
